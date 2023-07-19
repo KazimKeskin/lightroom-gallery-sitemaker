@@ -1,0 +1,72 @@
+.actionbar {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 -10% 1% -10%;
+}
+
+.item {
+  flex: 1;
+  text-align: center;
+  font-size: 16px;
+  width: 10%;
+  border: none;
+  display: inline-block;
+  vertical-align: middle;
+  color: inherit;
+  background-color: inherit;
+  text-align: center;
+  cursor: pointer;
+  white-space: nowrap;
+  margin: 0 13% 0 13%;
+}
+
+.item.left {
+  /* text-align: left; */
+  font-size: 16px;
+  color: white;
+
+}
+
+.item.right {
+  /* text-align: right; */
+  font-size: 24px;
+
+}
+
+.item:hover i{
+  color: grey;
+  cursor: pointer;
+}
+
+#info:hover #loupeMeta {
+  display: block;
+}
+
+#loupeMeta {
+    display: none;
+    width: 150px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    z-index: 1;
+    bottom: 5%;
+    right: 6%;
+    border-radius: 6px;
+    position: fixed;
+  }
+
+#loupeMeta li {
+  text-align: center;
+  float: none;
+  padding: 0px 16px 20px 20px;
+}
+
+#form {
+  display: none;
+  color: #fff;
+  text-align: center;
+  z-index: 1;
+  position: fixed;
+  bottom: 5%;
+  left: 6%;
+}
