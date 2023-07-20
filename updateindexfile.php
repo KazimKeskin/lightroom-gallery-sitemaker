@@ -64,9 +64,7 @@ $actionbar = [
             ['name' => 'div', 'content' => [
                 ['name' => 'label', 'attributes' => ['for' => 'comment'], 'content' => [
                     ['name' => 'input', 'attributes' => ['type' => 'text', 'name' => 'comment', 'id' => 'comment']]
-                ]]
-            ]],
-            ['name' => 'div', 'content' => [
+                ]],
                 ['name' => 'input', 'attributes' => ['class' => 'button', 'type' => 'submit', 'name' => 'submit', 'value' => 'Send']]
             ]]
         ]],
