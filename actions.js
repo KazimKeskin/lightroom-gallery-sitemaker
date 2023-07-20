@@ -9,10 +9,10 @@ function toggleForm() {
       var form = document.getElementById("form");
       if (form.style.display === "block") {
         form.style.display = "none";
-    document.getElementById("toggle").innerHTML = "Comment";
+    document.getElementById("comment").innerHTML = "Comment";
       } else {
         form.style.display = "block";
-    document.getElementById("toggle").innerHTML = "Close";
+    document.getElementById("comment").innerHTML = "Close";
       }
 }
 
