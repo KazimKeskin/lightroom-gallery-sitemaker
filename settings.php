@@ -17,6 +17,8 @@ $editpaginationsize = 1;
 
 $addtitle = 1;
 
+$addnav = 1;
+
 $commentpage = ""; // the url for where your comment API page is
 
 ?>
