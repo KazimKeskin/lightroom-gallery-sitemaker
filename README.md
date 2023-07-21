@@ -17,10 +17,12 @@ It uses DOM manipulation to inject HTML and some JavaScript into the files gener
 
 I have untweaked the script's specificity to my website and thus I would expect some customisation to be wanted, either before or after running the script, however the script will work to simply add features to the standard Lightroom web gallery export.
 
+This works with Adobe Lightroom Classic 9.0, with the Grid Gallery Templates and I have not tested it with other templates, nor do I know whether the required features are available in other versions of Lightroom.
+
 ## Usage
 - Prerequisites
   - Currently you will need PHP installed and callable (either through PATH variable or by running the exe along with the script).
--	Export galleries from Lightroom CC using one of the "Grid Gallery" templates (it currently only works with these as the other templates have different HTML layout).
+-	Export galleries from Lightroom using one of the "Grid Gallery" templates and with "Show Header" off. (If you are customising the script, then feel free to try with different templates but the HTML file produced from the export will have a different structure and you will need to account for that.)
 -	Place them into a folder such that the folder structure is 'galleries/[gallery-title]'.
 -	For each gallery, export full-sized images with the metadata desired into a folder 'galleries/[gallery-title]/images/full'. (this is required both for the full-sized image download and for the info panel)
 -	Edit the variables in 'settings.php'
