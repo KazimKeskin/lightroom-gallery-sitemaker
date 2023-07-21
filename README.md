@@ -7,7 +7,7 @@ Customises all of your gallery pages at once so that adjustments to your website
 - info panel displaying exif data
 - full-size image download button
 - comment form
-- (In Progress) galleries navigation menu/list
+- galleries navigation menu and mobile menu
 - (Planned) tag powered gallery system
 
 ## Background
