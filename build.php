@@ -111,16 +111,14 @@ function generateSmallNav($folders, $activePage) {
         if ($folder['name'] === $activePage) {
           array_push($pages,
               ['name' => 'a', 'attributes' => ['class' => 'active', 'href' => $webgallerypath . $folder['name']], 'content' => $folder['name']]
-          ]);
+          );
         }
         else {
           array_push($pages,
               ['name' => 'a', 'attributes' => ['href' => $webgallerypath . $folder['name']], 'content' => $folder['name']]
-            )
-          ;
-        }}
-
-
+            );          
+        }
+      }
 
 
 
