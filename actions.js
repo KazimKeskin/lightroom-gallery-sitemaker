@@ -24,3 +24,12 @@ function toggleInfo() {
         form.style.display = "block";
       }
 }
+
+function openMenu() {
+  var x = document.getElementById("smallnav");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  }
+}
