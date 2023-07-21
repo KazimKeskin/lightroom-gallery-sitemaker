@@ -93,6 +93,27 @@ foreach ($targetDivs as $targetDiv) {
 
 
 
+if ($addnav === 1) {
+
+  $targetTag = 'body'; // Replace with the tag name of the element you want to target
+  $targetElement = $dom->getElementsByTagName($targetTag)->item(0);
+
+  if ($targetElement) {
+    foreach ($nav as $element) {
+        $node = createElement($dom, $element);
+        // Insert the code after the closed tag
+        $targetElement->parentNode->insertBefore($node, $targetElement);
+    }
+    foreach ($smallnav as $element) {
+        $node = createElement($dom, $element);
+        // Insert the code after the closed tag
+        $targetElement->parentNode->insertBefore($node, $targetElement);
+    }
+  }
+}
+
+
+
 
 
 if($addscript === 1) {
