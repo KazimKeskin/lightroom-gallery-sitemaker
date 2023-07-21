@@ -1,3 +1,4 @@
+/* actionbar */
 .actionbar {
   display: flex;
   justify-content: space-between;
@@ -21,14 +22,12 @@
 }
 
 .item.left {
-  /* text-align: left; */
   font-size: 16px;
   color: white;
 
 }
 
 .item.right {
-  /* text-align: right; */
   font-size: 24px;
 
 }
@@ -69,4 +68,67 @@
   position: fixed;
   bottom: 5%;
   left: 6%;
+}
+
+
+/* nav */
+.menu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+.link {
+  overflow: hidden;
+  float: left;
+}
+
+.link a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  padding-left: 30px;
+  padding-right: 30px;
+  text-decoration: none;
+  margin: 0;
+}
+
+.link a:hover {
+  background-color: #111;
+	/* box-shadow: 0 -2px 10px rgba(255,255,255,0.2); */
+}
+
+.active {
+    background-color: #222;
+    color: white;
+	  /* box-shadow: 0 -2px 8px rgba(255,255,255,0.1); */
+	  font-style: italic;
+}
+/* */
+
+#menu-icon {
+  float: right;
+  text-align: right;
+  color: white;
+  font-size: 30px;
+  padding: 14px 18px;
+}
+
+#smallnav {
+  display: none;
+}
+
+#smallnav a {
+  display: inline-block;
+	width: 100%;
+	text-align: center;
+	z-index: 1;
+  overflow: hidden;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  padding: 8px 10px;
 }
