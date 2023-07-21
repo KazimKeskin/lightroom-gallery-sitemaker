@@ -64,17 +64,18 @@ function generateNav($folders, $activePage) {
         if ($folder['name'] === $activePage) {
           array_push($pages,
             ['name' => 'li',  'attributes' => ['class' => 'link'], 'content' => [
-              ['name' => 'a', 'attributes' => ['class' => 'active', 'href' => $webgallerypath . $folder['name']], 'content' => $folder['name']
+              ['name' => 'a', 'attributes' => ['class' => 'active', 'href' => $webgallerypath . $folder['name']], 'content' => $folder['name']]
             ]]
-          ]);
+          );
         }
         else {
           array_push($pages,
             ['name' => 'li', 'attributes' => ['class' => 'link'], 'content' => [
               ['name' => 'a', 'attributes' => ['href' => $webgallerypath . $folder['name']], 'content' => $folder['name']]
-            ]])
-          ;
-        }}
+            ]]
+          );
+        }
+      }
 
 
 
@@ -119,6 +120,8 @@ function generateSmallNav($folders, $activePage) {
             );          
         }
       }
+
+
 
 
 
