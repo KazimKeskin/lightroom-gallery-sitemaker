@@ -52,7 +52,7 @@ function createElement($dom, $element) {
     return $node;
 }
 
-function generateNav($folders, $activePage) {
+function generateNav($folders, $activePage, $webgallery) {
 
   $pages = array();
     foreach ($folders as $folder) {
@@ -100,7 +100,7 @@ function generateNav($folders, $activePage) {
 return $nav;
 }
 
-function generateSmallNav($folders, $activePage) {
+function generateSmallNav($folders, $activePage, $webgallery) {
 
   $pages = array();
     foreach ($folders as $folder) {
@@ -158,8 +158,8 @@ return $smallnav;
 function updateIndexFiles($folders) {
   foreach ($folders as $folder) {
     if ($folder['parent'] === "galleries") {
-      $nav = generateNav($folders, $folder);
-      $smallnav = generateSmallNav($folders, $folder);
+      $nav = generateNav($folders, $folder, $webgallery);
+      $smallnav = generateSmallNav($folders, $folder, $webgallery);
       include 'updateindexfile.php';
     }
   }
