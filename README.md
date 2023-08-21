@@ -33,7 +33,7 @@ This works with Adobe Lightroom Classic 9.0, with the Grid Gallery Templates and
       `cd /d "C:\downloads/lightroom-gallery-sitemaker"`
     - Execute
       - if you have PHP as a PATH variable `php build.php`
-      - if not, you must replace "php" with the location of your php.exe file `C:/php/php.exe' build.php`
+      - if not, you must replace "php" with the location of your php.exe file `C:/php/php.exe build.php`
      
 ## Customisation
   The script is written as a sort of template with enough abstractedness that makes it trivial to edit and add features.
