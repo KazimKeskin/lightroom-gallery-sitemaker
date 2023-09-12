@@ -283,13 +283,13 @@ foreach ($scripts as $script) {
       _metadata += \'<li class="caption">\' + $thumbnail.attr("data-model") + \'</li>\';
   }
   if($thumbnail.attr("data-focallength") != "undefined"){
-      _metadata += \'<li class="caption">Focal Length: \' + $thumbnail.attr("data-focallength") + \'mm</li>\';
+      _metadata += \'<li class="caption">Focal Length: \' + $thumbnail.attr("data-focallength") + \'</li>\';
   }
   if($thumbnail.attr("data-exposure") != "undefined"){
-      _metadata += \'<li class="caption">Exposure: \' + $thumbnail.attr("data-exposure") + \'s</li>\';
+      _metadata += \'<li class="caption">Exposure: \' + $thumbnail.attr("data-exposure") + \'</li>\';
   }
   if($thumbnail.attr("data-fnumber") != "undefined"){
-      _metadata += \'<li class="caption">F-Stop: f/\' + $thumbnail.attr("data-fnumber") + \'</li>\';
+      _metadata += \'<li class="caption">F-Stop: \' + $thumbnail.attr("data-fnumber") + \'</li>\';
   }
   if($thumbnail.attr("data-iso") != "undefined"){
       _metadata += \'<li class="caption">ISO: \' + $thumbnail.attr("data-iso") + \'</li>\';
