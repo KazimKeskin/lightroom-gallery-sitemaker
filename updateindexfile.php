@@ -1,7 +1,6 @@
+
 <?php
-
 include 'settings.php';
-
 // Read the contents of the existing HTML file
 $htmlFile = $folder['path'].'/index.html';
 $dom = new DOMDocument();
@@ -9,14 +8,11 @@ $dom->preserveWhiteSpace = false;
 $dom->formatOutput = true;
 @$dom->loadHTMLFile($htmlFile, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
 
-
-
-
+;
 
 if($addbasetag === 1) {
   $baseElement = $dom->createElement('base');
-  $baseElement->setAttribute('href', str_replace('\\', '/', dirname($folder['path'])));
-  $baseElement->setAttribute('target', '_blank');
+  $baseElement->setAttribute('href', $baseurl);
 };
 
 
@@ -51,29 +47,62 @@ if($addstylesheet === 1) {
 
 
 
+if ($addnav === 1) {
+  $targetElement = $dom->getElementsByTagName('header')->item(0);
+
+  if ($targetElement !== NULL) {
+    $targetElement = $dom->getElementsByTagName('body')->item(0);
+    foreach ($nav as $element) {
+        $node = createElement($dom, $element);
+        // Insert the code before body tag
+        $targetElement->insertBefore($node, $targetElement->firstChild);
+    }
+  }
+  else {
+    $targetTag = 'body'; // Replace with the tag name of the element you want to target
+    $targetElement = $dom->getElementsByTagName($targetTag)->item(0);
+
+    if ($targetElement) {
+      foreach ($nav as $element) {
+          $node = createElement($dom, $element);
+          // Insert the code before body tag
+          $targetElement->parentNode->insertBefore($node, $targetElement);
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
 // add comment, full-image and info. into info-container
+
 $actionbar = [
-    ['name' => 'div', 'attributes' => ['class' => 'actionbar'], 'content' => [
-        ['name' => 'button', 'attributes' => ['id' => 'comment', 'class' => 'item left button', 'onclick' => 'toggleForm()'], 'content' => 'Comment'],
-        ['name' => 'form', 'attributes' => ['onsubmit' => 'setFormFieldValue();', 'id' => 'form', 'action' => $commentpage, 'method' => 'post', 'enctype' => 'application/x-www-form-urlencoded'], 'content' => [
-            ['name' => 'div', 'content' => [
-                ['name' => 'label', 'attributes' => ['for' => 'page'], 'content' => [
-                    ['name' => 'input', 'attributes' => ['type' => 'hidden', 'id' => 'page', 'name' => 'page']]
+    ['name' => 'div', 'attributes' => ['id' => 'actionbar', 'class' => 'actionbar'], 'content' => [
+        ['name' => 'div', 'content' => [
+            ['name' => 'button', 'attributes' => ['id' => 'comment-button', 'class' => 'item left button', 'onclick' => 'toggleForm()'], 'content' => 'Comment'],
+            ['name' => 'form', 'attributes' => ['onsubmit' => 'setFormFieldValue();', 'id' => 'form', 'action' => '', 'method' => 'post', 'enctype' => 'application/x-www-form-urlencoded'], 'content' => [
+                ['name' => 'label', 'content' => [['name' => 'input', 'attributes' => ['type' => 'hidden', 'id' => 'page', 'name' => 'page']]]],
+                ['name' => 'div', 'content' => [
+                    ['name' => 'label', 'content' => [['name' => 'input', 'attributes' => ['type' => 'text', 'name' => 'comment', 'id' => 'comment']]]],
+                    ['name' => 'input', 'attributes' => ['class' => 'button', 'type' => 'submit', 'name' => 'submit', 'value' => 'Send']]
                 ]]
             ]],
-            ['name' => 'div', 'content' => [
-                ['name' => 'label', 'attributes' => ['for' => 'comment'], 'content' => [
-                    ['name' => 'input', 'attributes' => ['type' => 'text', 'name' => 'comment', 'id' => 'comment']]
-                ]],
-                ['name' => 'input', 'attributes' => ['class' => 'button', 'type' => 'submit', 'name' => 'submit', 'value' => 'Send']]
-            ]]
         ]],
-        ['name' => 'a', 'attributes' => ['id' => 'fullImage', 'class' => 'item', 'href' => '', 'target' => '_blank', 'onclick' => 'setImage()'], 'content' => 'Open Full-Size'],
-        ['name' => 'span', 'attributes' => ['id' => 'info', 'class' => 'item right','onclick' => 'toggleInfo()'], 'content' => [
+        ['name' => 'div', 'content' => [
+            ['name' => 'a', 'attributes' => ['id' => 'fullImage', 'class' => 'item center', 'href' => '', 'target' => '_blank', 'onclick' => 'setImage()'], 'content' => 'Download']
+        ]],
+        ['name' => 'div', 'attributes' => ['id' => 'info', 'class' => 'item right', 'onclick' => 'toggleInfo()'], 'content' => [
             ['name' => 'i', 'attributes' => ['class' => 'fa fa-info-circle']]
         ]]
     ]]
 ];
+
+
 
 // Find the specific <div> based on its class name
 $targetClassName = 'info-container'; // Replace with the class name of the <div> you want to target
@@ -93,27 +122,6 @@ foreach ($targetDivs as $targetDiv) {
 
 
 
-if ($addnav === 1) {
-
-  $targetTag = 'body'; // Replace with the tag name of the element you want to target
-  $targetElement = $dom->getElementsByTagName($targetTag)->item(0);
-
-  if ($targetElement) {
-    foreach ($nav as $element) {
-        $node = createElement($dom, $element);
-        // Insert the code after the closed tag
-        $targetElement->parentNode->insertBefore($node, $targetElement);
-    }
-    foreach ($smallnav as $element) {
-        $node = createElement($dom, $element);
-        // Insert the code after the closed tag
-        $targetElement->parentNode->insertBefore($node, $targetElement);
-    }
-  }
-}
-
-
-
 
 
 if($addscript === 1) {
@@ -121,9 +129,11 @@ if($addscript === 1) {
       '<script src="'.$script.'"></script>'
   ];
 
+  // Get the <body> element
   $bodyElement = $dom->getElementsByTagName('body')->item(0);
 
   if ($bodyElement) {
+      // Append the scripts to the <body> element
       foreach ($scripts as $script) {
           $scriptElement = $dom->createDocumentFragment();
           $scriptElement->appendXML($script);
@@ -131,6 +141,7 @@ if($addscript === 1) {
       }
   }
 };
+
 
 
 
@@ -146,6 +157,38 @@ if($editpaginationsize === 1) {
 };
 
 
+// lightmode + darkmode
+$schemeSwitch =[
+    [
+        'name' => 'a',
+        'attributes' => ['id' => 'scheme-switch', 'class' => 'dark', 'onclick' => 'toggleScheme()'],
+        'content' => [
+            ['name' => 'i', 'attributes' => ['class' => 'switch fa fa-lightbulb-o']]
+        ]
+    ]
+];
+
+
+
+$targetClassName = 'loupeContainer'; // Replace with the class name of the <div> you want to target
+$targetDiv = $dom->getElementById('loupeContainer');
+$bodyElement = $dom->getElementsByTagName('body')->item(0);
+// $headerElement = $dom->getElementsByTagName('header')->item(0);
+// $footerElement = $dom->getElementsByTagName('footer')->item(0);
+if ($targetDiv !== null) {
+        // Create and append new DOM nodes for each element in $actionbar
+        foreach ($schemeSwitch as $element) {
+            $node = createElement($dom, $element);
+            $targetDiv->parentNode->insertBefore($node, $targetDiv);
+        }
+        $class = $targetDiv->getAttribute('class');
+    $class .= ' dark';
+    $targetDiv->setAttribute('class', $class);
+      $class = $bodyElement->getAttribute('class');
+      $class .= ' dark';
+
+    $bodyElement->setAttribute('class', $class);
+}
 
 
 
@@ -153,12 +196,9 @@ if($addtitle === 1) {
 
   // Get title from gallery name
   $title = basename(dirname($htmlFile));
-
-  // Replace hyphens with spaces
-  $title = str_replace("-", " ", $title);
-
-  // Capitalize words
-  $title = ucwords($title);
+  $title = str_replace(range(0, 9), '', $title); // Remove numbers
+  $title = str_replace("-", " ", $title); // Replace underscores with spaces
+  $title = ucwords($title);  // Capitalize words
 
   // Get the <title> element
   $titleElement = $dom->getElementsByTagName('title')->item(0);
@@ -180,8 +220,8 @@ if($addtitle === 1) {
 
 
 
-
 // add exif data to array
+
 $scripts = $dom->getElementsByTagName('script');
 foreach ($scripts as $script) {
     // Check if the script contains the desired array
@@ -204,10 +244,10 @@ foreach ($scripts as $script) {
                 // Add the EXIF data to the image element
                 $image['DateTimeOriginal'] = date("j F Y  H:i:s", strtotime($exifData['DateTimeOriginal'])) ?? '';
                 $image['Model'] = $exifData['Model'] ?? '';
-                $image['FocalLength'] = convertToDecimal($exifData['FocalLength']).'mm' ?? '';
+                if($exifData['FocalLength']){$image['FocalLength'] = convertToDecimal($exifData['FocalLength']).'mm' ?? '';}
                 $image['ExposureTime'] = $exifData['ExposureTime'].'s' ?? '';
                 $image['ISOSpeedRatings'] = $exifData['ISOSpeedRatings'] ?? '';
-                $image['FNumber'] = 'f/'.convertToDecimal($exifData['FNumber']) ?? '';
+                if($exifData['FNumber']){$image['FNumber'] = 'f/'.convertToDecimal($exifData['FNumber']) ?? '';}
             }
         }
 
@@ -226,8 +266,8 @@ foreach ($scripts as $script) {
 
 
 
-
 // update javascript
+
   $filePath = $folder['path'].'/assets/js/main.js';  // Path to the JavaScript file
   $fileContent = file_get_contents($filePath);
   $textToInsert = 'if($thumbnail.attr("data-title") != "nil"){
@@ -236,28 +276,28 @@ foreach ($scripts as $script) {
   if($thumbnail.attr("data-caption") != "nil"){
       _metadata += \'<li class="caption">\' + $thumbnail.attr("data-caption") + \'</li>\';
   }
-  if($thumbnail.attr("data-date") != "nil"){
+  if($thumbnail.attr("data-date") != "undefined"){
       _metadata += \'<li class="caption">\' + $thumbnail.attr("data-date") + \'</li>\';
   }
-  if($thumbnail.attr("data-model") != "nil"){
+  if($thumbnail.attr("data-model") != "undefined"){
       _metadata += \'<li class="caption">\' + $thumbnail.attr("data-model") + \'</li>\';
   }
-  if($thumbnail.attr("data-focallength") != "nil"){
-      _metadata += \'<li class="caption">Focal Length: \' + $thumbnail.attr("data-focallength") + \'</li>\';
+  if($thumbnail.attr("data-focallength") != "undefined"){
+      _metadata += \'<li class="caption">Focal Length: \' + $thumbnail.attr("data-focallength") + \'mm</li>\';
   }
-  if($thumbnail.attr("data-exposure") != "nil"){
-      _metadata += \'<li class="caption">Exposure: \' + $thumbnail.attr("data-exposure") + \'</li>\';
+  if($thumbnail.attr("data-exposure") != "undefined"){
+      _metadata += \'<li class="caption">Exposure: \' + $thumbnail.attr("data-exposure") + \'s</li>\';
   }
-  if($thumbnail.attr("data-fnumber") != "nil"){
-      _metadata += \'<li class="caption">F-Stop: \' + $thumbnail.attr("data-fnumber") + \'</li>\';
+  if($thumbnail.attr("data-fnumber") != "undefined"){
+      _metadata += \'<li class="caption">F-Stop: f/\' + $thumbnail.attr("data-fnumber") + \'</li>\';
   }
-  if($thumbnail.attr("data-iso") != "nil"){
+  if($thumbnail.attr("data-iso") != "undefined"){
       _metadata += \'<li class="caption">ISO: \' + $thumbnail.attr("data-iso") + \'</li>\';
   }';  // Text to insert
-  $insertionCode = 'if($thumbnail.attr("data-title") != "nil"){
+  $insertionCode = 'if($thumbnail.attr("data-title") != "undefined"){
             _metadata += \'<p class="title">\' + $thumbnail.attr("data-title") + \'</p>\';
         }
-        if($thumbnail.attr("data-caption") != "nil"){
+        if($thumbnail.attr("data-caption") != "undefined"){
             _metadata += \'<p class="caption">\' + $thumbnail.attr("data-caption") + \'</p>\';
         }';
   $insertionPoint = strpos($fileContent, $insertionCode);
@@ -278,12 +318,9 @@ foreach ($scripts as $script) {
   file_put_contents($filePath, $modifiedContent);
 
 
-
-
-
-// copy over the CSS and JavaScript files
-  $sourceFilePath = 'actions.css';
-  $destinationFilePath = $folder['path'].'/assets/css/actions.css';
+// add actions styling and scripting
+  $sourceFilePath = 'sitemaker.css';
+  $destinationFilePath = $folder['path'].'/assets/css/sitemaker.css';
 
   if (copy($sourceFilePath, $destinationFilePath)) {
       echo "File copied successfully.";
@@ -291,8 +328,8 @@ foreach ($scripts as $script) {
       echo "File copy failed.";
   }
 
-  $sourceFilePath = 'actions.js';
-  $destinationFilePath = $folder['path'].'/assets/js/actions.js';
+  $sourceFilePath = 'main.css';
+  $destinationFilePath = $folder['path'].'/assets/css/main.css';
 
   if (copy($sourceFilePath, $destinationFilePath)) {
       echo "File copied successfully.";
@@ -300,12 +337,29 @@ foreach ($scripts as $script) {
       echo "File copy failed.";
   }
 
+  $sourceFilePath = 'custom.css';
+  $destinationFilePath = $folder['path'].'/assets/css/custom.css';
 
+  if (copy($sourceFilePath, $destinationFilePath)) {
+      echo "File copied successfully.";
+  } else {
+      echo "File copy failed.";
+  }
 
+  $sourceFilePath = 'sitemaker.js';
+  $destinationFilePath = $folder['path'].'/assets/js/sitemaker.js';
 
+  if (copy($sourceFilePath, $destinationFilePath)) {
+      echo "File copied successfully.";
+  } else {
+      echo "File copy failed.";
+  }
+
+echo $folder['path'];
 
 // Save the modified DOM as the updated HTML file
 $modifiedContent = $dom->saveHTML();
-file_put_contents($folder['path'].'/index.html', $modifiedContent);
-
+$modifiedContent = str_replace('%5C', '\\', $modifiedContent);
+file_put_contents($folder['path'].'/index.html', htmlspecialchars_decode($modifiedContent));
+// rename("".$folder['path']."/assets", "".dirname(dirname($folder['path']))."/assets");
 ?>
