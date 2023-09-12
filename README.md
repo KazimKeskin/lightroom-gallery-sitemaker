@@ -8,6 +8,7 @@ Customises all of your gallery pages at once so that adjustments to your website
 - full-size image download button
 - comment form
 - galleries navigation menu
+- dark/light mode
 
 ## Background
 This is a script that I wrote in order to customise Lightroom gallery exports before uploading them to my website. 
