@@ -3,7 +3,7 @@ A PHP script that helps automate the production of Adobe Lightroom web gallery b
 
 Customises all of your gallery pages at once so that adjustments to your website can be replicated across every page, making updating your galleries, potentially, much easier.
 
-You can view a demo of the result at www.kazimkeskin.com/photography/highlights/
+You can view a demo of the result at www.kazimkeskin.co.uk/photography/highlights/
 
 ## Components
 - info panel displaying exif data
