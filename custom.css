@@ -1,0 +1,34 @@
+html {
+  background-color: #292929 !important;
+  color: inherit;
+}
+
+.dark .thumb-img {
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, .15) !important;
+  border-color: #000000 !important;
+  border-width: 1px !important;
+}
+.light .thumb-img {
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, .15) !important;
+  border-color: #ffffff !important;
+  border-width: 1px !important;
+}
+
+#loupeContainer div.background {
+  background-color: #292929 !important;
+  color: inherit;
+}
+
+header div.background {
+  background-color: #292929 !important;
+  color: inherit;
+}
+
+.custom-colorable {
+  fill: #A0A0A0 !important;
+}
+
+body {
+  background-color: #292929 !important;
+  /* color: #CCCCCC !important; */
+}
