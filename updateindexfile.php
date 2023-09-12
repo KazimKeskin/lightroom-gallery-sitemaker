@@ -328,15 +328,6 @@ foreach ($scripts as $script) {
       echo "File copy failed.";
   }
 
-  $sourceFilePath = 'main.css';
-  $destinationFilePath = $folder['path'].'/assets/css/main.css';
-
-  if (copy($sourceFilePath, $destinationFilePath)) {
-      echo "File copied successfully.";
-  } else {
-      echo "File copy failed.";
-  }
-
   $sourceFilePath = 'custom.css';
   $destinationFilePath = $folder['path'].'/assets/css/custom.css';
 
