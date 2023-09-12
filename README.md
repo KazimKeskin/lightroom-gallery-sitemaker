@@ -7,8 +7,7 @@ Customises all of your gallery pages at once so that adjustments to your website
 - info panel displaying exif data
 - full-size image download button
 - comment form
-- galleries navigation menu and mobile menu
-- (Planned) tag powered gallery system
+- galleries navigation menu
 
 ## Background
 This is a script that I wrote in order to customise Lightroom gallery exports before uploading them to my website. 
