@@ -5,12 +5,21 @@ Customises all of your gallery pages at once so that adjustments to your website
 
 You can view a demo of the result at www.kazimkeskin.co.uk/photography/highlights/
 
+![image](https://github.com/KazimKeskin/lightroom-gallery-sitemaker/assets/115115454/e5a978b6-ed4b-40fe-9353-087f4abaab8b)
+
+
+
 ## Components
 - info panel displaying exif data
 - full-size image download button
 - comment form
 - galleries navigation menu
 - dark/light mode
+
+##
+![image](https://github.com/KazimKeskin/lightroom-gallery-sitemaker/assets/115115454/1484ae82-4a5d-43e3-bb49-873e269c9bf3)
+
+
 
 ## Background
 This is a script that I wrote in order to customise Lightroom gallery exports before uploading them to my website. 
