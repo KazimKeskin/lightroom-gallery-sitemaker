@@ -24,10 +24,9 @@ function scanDirectory($dir, &$result = array(), $depth = 0) {
     }
 }
 
-function convertToDecimal ($fraction) {
-    $numbers=explode("/",$fraction);
-    return round($numbers[0]/$numbers[1],1);
-}
+
+
+
 
 function createElement($dom, $element) {
     $node = $dom->createElement($element['name']);
@@ -52,121 +51,59 @@ function createElement($dom, $element) {
     return $node;
 }
 
-function generateNav($folders, $activePage, $webgallery) {
-
-  $pages = array();
-    foreach ($folders as $folder) {
-
-      if ($folder['parent'] === "galleries") {
-
-        $htmlFile = $folder['path'].'/index.html';
-
-        if ($folder['name'] === $activePage) {
-          array_push($pages,
-            ['name' => 'li',  'attributes' => ['class' => 'link'], 'content' => [
-              ['name' => 'a', 'attributes' => ['class' => 'active', 'href' => $webgallerypath . $folder['name']], 'content' => $folder['name']]
-            ]]
-          );
-        }
-        else {
-          array_push($pages,
-            ['name' => 'li', 'attributes' => ['class' => 'link'], 'content' => [
-              ['name' => 'a', 'attributes' => ['href' => $webgallerypath . $folder['name']], 'content' => $folder['name']]
-            ]]
-          );
-        }
-      }
-
-
-
-      $nav = [
-                  [
-                      'name' => 'div',
-                      'attributes' => ['class' => 'nav hide-small hide-medium'],
-                      'content' => [
-                          [
-                                'name' => 'ul',
-                                'attributes' => ['class' => 'menu'],
-                                'content' => $pages
-                          ]
-                      ]
-
-                  ]
-            ];
-
-
-
-    }
-return $nav;
-}
-
-function generateSmallNav($folders, $activePage, $webgallery) {
-
-  $pages = array();
-    foreach ($folders as $folder) {
-
-      if ($folder['parent'] === "galleries") {
-
-        $htmlFile = $folder['path'].'/index.html';
-
-        if ($folder['name'] === $activePage) {
-          array_push($pages,
-              ['name' => 'a', 'attributes' => ['class' => 'active', 'href' => $webgallerypath . $folder['name']], 'content' => $folder['name']]
-          );
-        }
-        else {
-          array_push($pages,
-              ['name' => 'a', 'attributes' => ['href' => $webgallerypath . $folder['name']], 'content' => $folder['name']]
-            );          
-        }
-      }
-
-
-
-
-
-      $smallnav = [
-                        [
-                            'name' => 'div',
-                            'attributes' => ['class' => 'nav hide-large'],
-                            'content' => [
-                              [
-                                'name' => 'a',
-                                'attributes' => ['href' => 'javascript:void(0);', 'id' => 'menu-icon', 'onclick' => 'openMenu()'],
-                                'content' =>
-                                [
-                                  [
-                                      'name' => 'i',
-                                      'attributes' => ['class' => 'fa fa-bars']
-                                  ]
-                                ]
-                              ],
-                              [
-                                'name' => 'div',
-                                'attributes' => ['id' => 'smallnav'],
-                                'content' => $pages
-                              ]
-                            ]
-                        ]
-                  ];
-
-    }
-return $smallnav;
-}
-
 
 function updateIndexFiles($folders) {
   foreach ($folders as $folder) {
     if ($folder['parent'] === "galleries") {
-      $nav = generateNav($folders, $folder, $webgallery);
-      $smallnav = generateSmallNav($folders, $folder, $webgallery);
+      $nav = generateNav($folders, $folder['name'], $webgallerypath);
       include 'updateindexfile.php';
     }
   }
 }
 
 
+function generateNav($folders, $activePage, $webgallerypath) {
 
+  $pages = array();
+    foreach ($folders as $folder) {
+
+      if ($folder['parent'] === "galleries") {
+
+        $htmlFile = $folder['path'].'/index.html';
+
+        if ($folder['name'] === $activePage) {
+          array_push($pages,
+              ['name' => 'a', 'attributes' => ['class' => 'active', 'href' => "\\" . $webgallerypath . str_replace(range(0, 9), '', $folder['name'])], 'content' => ucwords(str_replace("-", " ", str_replace(range(0, 9), '', $folder['name'])))
+          ]);
+        }
+        else {
+          array_push($pages,
+              ['name' => 'a', 'attributes' => ['href' => "\\" . $webgallerypath . str_replace(range(0, 9), '', $folder['name'])], 'content' =>   ucwords(str_replace("-", " ", str_replace(range(0, 9), '', $folder['name'])))]
+            )
+          ;
+        }}
+
+
+
+      $nav = [
+                  [
+                      'name' => 'nav',
+                      'attributes' => ['id' => 'menu', 'class' => 'menu nav link'],
+                      'content' => $pages
+                  ]
+            ];
+
+
+
+    }
+  return $nav;
+}
+
+
+function convertToDecimal ($fraction) {
+        $numbers=explode("/",$fraction);
+        return round($numbers[0]/$numbers[1],1);
+}
 
 $folderStructure = array();
 
