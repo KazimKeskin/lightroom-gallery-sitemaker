@@ -7,6 +7,8 @@ function setImage() {
 
 function toggleForm() {
       var form = document.getElementById("form");
+      var commentbtn = document.getElementById("comment-button");
+          commentbtn.classList.toggle("active");
       if (form.style.display === "block") {
         form.style.display = "none";
     document.getElementById("comment").innerHTML = "Comment";
@@ -32,4 +34,16 @@ function openMenu() {
   } else {
     x.style.display = "block";
   }
+}
+
+function toggleScheme() {
+  var body = document.body;
+  var header = document.getElementById("header");
+  var footer = document.getElementById("footer");
+  body.classList.toggle("dark");
+  body.classList.toggle("light");
+  header.classList.toggle("dark");
+  header.classList.toggle("light");
+  footer.classList.toggle("dark");
+  footer.classList.toggle("light");
 }
