@@ -3,6 +3,8 @@ A PHP script that helps automate the production of Adobe Lightroom web gallery b
 
 Customises all of your gallery pages at once so that adjustments to your website can be replicated across every page, making updating your galleries, potentially, much easier.
 
+You can view a demo of the result at www.kazimkeskin.com/photography/highlights/
+
 ## Components
 - info panel displaying exif data
 - full-size image download button
@@ -26,7 +28,7 @@ This works with Adobe Lightroom Classic 9.0, with the Grid Gallery Templates and
 -	Place them into a folder such that the folder structure is 'galleries/[gallery-title]'.
 -	For each gallery, export full-sized images with the metadata desired into a folder 'galleries/[gallery-title]/images/full'. (this is required both for the full-sized image download and for the info panel)
 -	Edit the variables in 'settings.php'
-    - Change $dir to the full path to your galleries folder e.g. "C:/website/galleries" (making sure to include the quotation marks.)
+    - Change $dir to the full path to your galleries folder e.g. "C:/website/galleries".
     - Turn optional features on and off by changing between 1 and 0.
 -	Then run the script.
     -	In the command line, navigate to the directory of the script e.g.
