@@ -1,0 +1,488 @@
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    background: transparent;
+}
+
+:root {
+  --dark-background-color: #111;
+  --dark-color: #afafaf;
+  --dark-header-background-color: #111;
+  --dark-heading-color: #d5d5d5;
+  --dark-menu-backgorund-color: #333;
+  --light-heading-color: #333;
+  --light-background-color: #F7F7F7;
+  --main-bg-color: #e7e7e7;
+  --text-color-light: #BBB;
+  --text-color-dark: #111;
+  --dark-bg-color: #222;
+  --light-bg-color: #FFF;
+  --button-bg-color: inherit;
+  --button-border-color: black;
+  --button-shadow-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Reset styles for HTML and body elements */
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--main-bg-color);
+  font-family: sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+/* Body styles */
+body {
+  width: 100%;
+  height: 100vh;
+  color: #BBB;
+  overflow-x: hidden;
+}
+body.light .menu a{
+  color: var(--light-heading-color);
+}
+body.light {
+  background-color: var(--light-background-color) !important;
+}
+body.light #loupeContainer div.background {
+  background-color: var(--main-bg-color) !important;
+  color: inherit;
+}
+body.light #thumbnailContainer {
+  background-color: var(--main-bg-color) !important;
+  color: inherit;
+}
+.light {
+  color: #555  ;
+}
+@media (max-width:600px) {
+  .hide-small{display:none !important;}
+}
+
+@media (min-width:600px) {
+  .hide-large{display:none !important;}
+}
+.dark .active {
+  color: white;
+}
+.light .active {
+  color: black;
+}
+
+h2 {
+  line-height:0.1;
+}
+
+footer {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: inherit;
+  color: inherit;
+  padding: 10px;
+  border-top: 1px solid grey;
+  position: relative;
+  bottom: 0px;
+  width: 100%;
+  overflow-x: auto;
+}
+
+footer nav {
+  display: flex;
+  flex-direction: column;
+  background-color: none;
+}
+
+footer nav a {
+  color: inherit;
+  text-decoration: none;
+  padding: 5px 0;
+  background-color: none;
+  font-size: 12px;
+}
+
+footer nav a.active {
+  font-weight: bold;
+}
+
+footer div {
+  color: inherit;
+  font-weight: bold;
+}
+
+footer nav a.externals {
+  color: inherit;
+}
+
+footer div {
+  color: inherit;
+  font-weight: bold;
+  padding: 5px 0;
+}
+
+header {
+  background-color: #222;
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  vertical-align: middle;
+  font-size: 15px;
+  font-stretch: expanded;
+  font-kerning: normal;
+  font-family: Verdana, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1;
+  height: 60px;
+  align-items: center;
+  width: 100%;
+  z-index: 2;
+  margin: 0;
+  padding: 0;
+  flex-wrap: nowrap;
+}
+
+header.dark, footer.dark{
+  background-color: var(--dark-background-color);
+  color: var(--dark-heading-color);
+}
+
+header.light, footer.light{
+  background-color: var(--light-bg-color);
+  color: var(--light-heading-color);
+}
+
+header.light a, footer.light a{
+  color: var(--light-heading-color);
+}
+header.light  a:hover{
+  color: black ;
+}
+
+#logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* actionar*/
+.actionbar {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1%;
+  font-size: 14px;
+  align-items: center;
+    color: inherit;
+}
+.actionbar.dark {
+  color: var(--dark-color);
+}
+.actionbar.light {
+  color: #6A6A6A;
+}
+
+.actionbar div{
+  text-align: center;
+  flex: 1;
+}
+
+.actionbar i{
+  font-size: 18px;
+}
+
+.actionbar a{
+  text-decoration: none;
+  color: inherit;
+}
+
+body.light form{
+  background: none;
+  border: none;
+  outline: none;
+  border:none;
+  vertical-align:middle;
+  overflow:hidden;
+  text-decoration:none;
+  background-color: inherit;
+  text-align:center;
+  cursor:pointer;
+  white-space:nowrap;
+  color: var(--dark-background-color);
+  display: flex;
+  margin: 0;
+  box-shadow:0;
+}
+
+#comment-button {
+  background: none;
+  border: none;
+
+}
+
+#info {
+  font-size: 16px;
+  text-align: center;
+}
+
+#info:hover #loupeMeta {
+  display: block;
+}
+#comment-button {
+    width: auto;
+    text-align: center;
+    margin: auto;
+}
+.left {
+    flex-basis: 0;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.right {
+    flex-basis: 0;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.left a{
+  margin: 20px;
+
+}
+
+.right a{
+  margin: 20px;
+}
+
+.center {
+  text-align: center;
+  flex-grow: 1;
+  flex-basis: 0;
+}
+
+
+
+.button {
+  background: none;
+  border: none;
+  outline: none;
+  border:none;
+  vertical-align:middle;
+  overflow:hidden;
+  text-decoration:none;
+  background-color:inherit;
+  text-align:center;
+  cursor:pointer;
+  white-space:nowrap;
+  color: inherit;
+  display: flex;
+  margin: 0;
+}
+
+.dark svg:hover, .dark i:hover, .dark a:hover, .dark .button a, .dark .button:hover{
+  color: white;
+  cursor: pointer;
+}
+.light svg:hover, .light i:hover, .light a:hover, .light .button a, .light .button:hover{
+  color: black;
+  cursor: pointer;
+}
+.button a:hover{
+  box-shadow:0 8px 16px 0 rgba(0,0,0,0.2),
+  0 6px 20px 0 rgba(0,0,0,0.19)
+}
+
+
+
+
+#loupeMeta {
+    display: none;
+    width: 150px;
+    background-color: #555;
+    color: var(--light-bg-color);
+    text-align: center;
+    z-index: 1;
+    bottom: 5%;
+    right: 6%;
+    border-radius: 6px;
+    position: fixed;
+}
+
+#loupeMeta li {
+  text-align: center;
+  float: none;
+  padding: 0px 16px 20px 20px;
+}
+
+#form {
+  display: none;
+  text-align: center;
+  z-index: 1;
+  position: fixed;
+  bottom: 5%;
+  left: 5%;
+}
+
+
+
+
+/* nav */
+
+.nav {
+  background-color: var(--dark-menu-backgorund-color);
+  color: gray;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #333;
+}
+.nav.light {
+  background-color: var(--light-background-color);
+  fill: #A0A0A0 !important;
+  color: #404040;
+}
+
+
+.menu {
+  background-color: var(--dark-menu-backgorund-color);
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  vertical-align: middle;
+  font-size: 15px;
+  font-stretch: expanded;
+  font-kerning: normal;
+  font-family: Verdana, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.2;
+  align-items: stretch;
+  margin: 0;
+  padding: 0;
+}
+
+.menu a {
+   flex-direction: column;
+   text-decoration: none;
+   background-color:inherit;
+   color: inherit;
+  padding: 16px 20px;
+  outline: none;
+  border: none;
+  margin: 0 2px;
+}
+
+.menu:first-child a{
+  margin: 0;
+}
+
+
+
+
+.link {
+
+  margin: 0;
+}
+
+.link ul{
+  margin: 0;
+  justify-content: space-between;
+}
+
+.link a {
+  display: inline-flex;
+  color: white;
+  flex-direction: row;
+  float: left;
+  padding: 14px 16px;
+  padding-left: 30px;
+  padding-right: 30px;
+  text-decoration: none;
+  margin: 0;
+}
+
+.dark .link a:hover {
+  background-color: var(--text-color-dark);
+  color: white;
+}
+
+.light .link a:hover {
+  background-color: white;
+  color: black;
+}
+
+
+.menu .active {
+  font-style: italic;
+}
+
+#menu {
+  width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+
+
+.logo img {
+  margin: 10px 0;
+  margin-left: 12px;
+  height: 40px;
+  z-index: 4;
+}
+
+#internals {
+  z-index: 2;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+
+#internals a {
+  text-decoration: none;
+}
+
+.dark #menu{
+  background-color: #242424;
+  color: var(--dark-heading-color);
+  border-bottom: 1px solid black;
+  border-top: 1px solid grey;
+}
+.light #menu{
+  background-color: #eee;
+  border-bottom: 1px solid white;
+  border-top: 1px solid grey;
+}
+
+
+
+/* scheme switch */
+.switch {
+  font-size: 20px;
+  padding: 3px;
+}
+
+#scheme-switch {
+  position: fixed;
+  bottom: 35px;
+  right: 20px;
+  z-index: 5;
+  border: 20px;
+  border-color: black;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 19px;
+  background-color: inherit;
+  box-shadow:0 8px 16px 0 rgba(0,0,0,0.2),
+  0 6px 20px 0 rgba(0,0,0,0.19);
+  padding: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+body.light div.background{
+  background-color: #d6d6d6;
+  color: #222;
+}
